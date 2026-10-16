@@ -1,8 +1,8 @@
-require("dotenv").config();
+import "dotenv/config";
 
-const express = require("express");
-const cors = require("cors");
-const pinoHttp = require("pino-http");
+import express from "express";
+import cors from "cors";
+import pinoHttp from "pino-http";
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -33,10 +33,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
 
-if (require.main === module) {
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
-}
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
-module.exports = app;
+export default app;
