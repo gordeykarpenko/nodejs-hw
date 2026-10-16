@@ -21,16 +21,10 @@ app.use("/notes", notesRouter);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-const startServer = async () => {
-  await connectMongoDB();
-  app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
-};
+await connectMongoDB();
 
-startServer().catch((error) => {
-  console.error("Failed to start server:", error.message);
-  process.exit(1);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 export default app;
